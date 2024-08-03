@@ -1,51 +1,62 @@
-if (typeof externalAPI == 'undefined') {
-    console.log('апи нет');
-    return
+const prevButton = document.querySelector('.player-controls__btn_prev');
+function disablePrevButton() {
+    if (typeof externalAPI == 'undefined') {
+        console.log('апи нет ');
+        return
+    }
+    const prevButton = document.querySelector('.player-controls__btn_prev');
+
+    if (prevButton) {
+        prevButton.style.display = 'inline-block'; // Показываем кнопку, если нужно
+        prevButton.style.opacity = '0.5'; // Делает кнопку полупрозрачной
+        prevButton.style.cursor = 'not-allowed'; // Меняет курсор на запрещающий
+        prevButton.style.pointerEvents = 'none'; // Отключает взаимодействие с кнопкой
+    } else {
+        console.log('Кнопка не найдена');
+    }
+}
+
+function enablePrevButton() {
+    if (typeof externalAPI == 'undefined') {
+        console.log('апи нет ');
+        return
+    }
+    const prevButton = document.querySelector('.player-controls__btn_prev');
+
+    if (prevButton) {
+        prevButton.style.opacity = '1'; // Возвращает полную непрозрачность
+        prevButton.style.cursor = 'pointer'; // Меняет курсор обратно на указатель
+        prevButton.style.pointerEvents = 'auto'; // Включает взаимодействие с кнопкой
+    } else {
+        console.log('Кнопка не найдена');
+    }
 }
 
 
-const trackHistory = [];
-let currentIndex = -1;
+
+
+
 
 
 function updateCurrentTrack() {
-    const currentTrack = externalAPI.getCurrentTrack();
-    if (currentTrack) {
-        trackHistory.push(currentTrack);
-        currentIndex++;
-        console.log('добавили трек ', currentTrack.title, "\n позиция ", currentIndex);
+    if (externalAPI.getTrackIndex() < 1) { disablePrevButton() } else {
+        enablePrevButton()
     }
-};
+}
 
 externalAPI.on(externalAPI.EVENT_TRACK, updateCurrentTrack);
 
 
 function goPrev() {
-    if (currentIndex > 0) {
-        currentIndex--;
-        const prevTrack = trackHistory[currentIndex];
-        if (prevTrack) {
-            externalAPI.play(trackHistory.findIndex(track => track.link === prevTrack.link));
-            console.log('предыыдущий (настоящий) трек включен', prevTrack.title);
-        }
-    } else {
-        console.log('треков нет оказывается');
+    const currentIndex = externalAPI.getTrackIndex();
+    if (currentIndex < 1) {
+        return
     }
+
+    externalAPI.play(currentIndex - 1)
+
 };
 
-function goNext()  {
-    if (currentIndex < trackHistory.length - 1) {
-        currentIndex++;
-        const nextTrack = trackHistory[currentIndex];
-        if (nextTrack) {
-            externalAPI.play(trackHistory.findIndex(track => track.link === nextTrack.link));
-            console.log('следующий(текущий) по истории', nextTrack.title);
-        }
-    } else {
-        console.log("2 следущий по апи")
-        externalAPI.next()
-    }
-};
 
 updateCurrentTrack();
 

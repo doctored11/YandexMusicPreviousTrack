@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "Yandex Music Prev Button Extension (One)",
+    "version": "1.0.0",
+    "description": "just give you the opportunity to watch the last track in my wave",
+    "permissions": [
+      "activeTab",
+        "tabs"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["*://music.yandex.ru/*"],
+        "js": ["content11.js"],
+        "run_at": "document_end"
+      }
+    ]
+  }
+  

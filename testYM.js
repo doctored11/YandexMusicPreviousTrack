@@ -1,19 +1,34 @@
 const prevButton = document.querySelector('.player-controls__btn_prev');
+
+const buttonStyles = {
+    disabled: {
+        display: 'inline-block',
+        opacity: '0.15',
+        cursor: 'not-allowed',
+       
+    },
+    enabled: {
+        display: 'inline-block',
+        opacity: '0.5',
+        cursor: 'pointer',
+        pointerEvents: 'auto'
+    }
+};
+
+function applyStyles(styles) {
+    if (prevButton) {
+        Object.assign(prevButton.style, styles);
+    } else {
+        console.log('кнопки нема');
+    }
+}
+
 function disablePrevButton() {
     if (typeof externalAPI == 'undefined') {
         console.log('апи нет ');
         return
     }
-    const prevButton = document.querySelector('.player-controls__btn_prev');
-
-    if (prevButton) {
-        prevButton.style.display = 'inline-block'; 
-        prevButton.style.opacity = '0.5'; 
-        prevButton.style.cursor = 'not-allowed'; 
-        prevButton.style.pointerEvents = 'none'; 
-    } else {
-        console.log('Кнопка не найдена');
-    }
+    applyStyles(buttonStyles.disabled);
 }
 
 function enablePrevButton() {
@@ -21,15 +36,9 @@ function enablePrevButton() {
         console.log('апи нет ');
         return
     }
-    const prevButton = document.querySelector('.player-controls__btn_prev');
 
-    if (prevButton) {
-        prevButton.style.opacity = '1'; 
-        prevButton.style.cursor = 'pointer'; 
-        prevButton.style.pointerEvents = 'auto'; 
-    } else {
-        console.log('Кнопка не найдена');
-    }
+
+    applyStyles(buttonStyles.enabled);
 }
 
 function updateCurrentTrack() {

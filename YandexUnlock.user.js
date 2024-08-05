@@ -44,12 +44,25 @@
         right:110px;
         transform:translateY(-2px)
    }
+    
     ` ;
     document.head.appendChild(style);
 
-
+    function speedUpdate() {
+        const seqControls = document.querySelector('.player-controls__seq-controls');
+        const speedControls = document.querySelector('.player-controls__speed-controls');
+    
+        if (!speedControls || !seqControls) return;
+    
+        const visibleChildrenCount = Array.from(seqControls.children).filter(child =>
+            getComputedStyle(child).display != 'none'
+        ).length;
+    
+        speedControls.style.right = visibleChildrenCount > 1 ? '210px' : '110px';
+    }
 
     function applyStyles(state) {
+
         const prevButton = document.querySelector('.player-controls__btn_prev');
         if (prevButton) {
             prevButton.classList.remove('disabled', 'enabled');
@@ -58,6 +71,7 @@
     }
 
     function updateCurrentTrack() {
+        speedUpdate();
         const trackIndex = window.externalAPI?.getTrackIndex();
         applyStyles(trackIndex < 1 ? 'disabled' : 'enabled');
     }

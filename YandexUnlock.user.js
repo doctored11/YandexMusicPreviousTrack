@@ -40,13 +40,11 @@
         align-items: center;
     }
    .player-controls__speed-controls{
-    display:inline-block !important;
-    right:110px;
-    transform:translateY(-2px)
+        display:inline-block !important;
+        right:110px;
+        transform:translateY(-2px)
    }
-    
-    `
-        ;
+    ` ;
     document.head.appendChild(style);
 
 

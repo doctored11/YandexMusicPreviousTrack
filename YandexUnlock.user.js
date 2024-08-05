@@ -9,7 +9,8 @@
 // @author       doctored11
 // @match        https://music.yandex.ru/*
 // @grant        none
-// @downloadURL  https://github.com/doctored11/YandexMusicPreviousTrack/YandexUnlock.js
+// @downloadURL https://raw.githubusercontent.com/doctored11/YandexMusicPreviousTrack/main/YandexUnlock.user.js
+
 
 // ==/UserScript==
 

@@ -16,6 +16,8 @@
 
 1. **Установите Tampermonkey**: Убедитесь, что у вас установлен расширение Tampermonkey в вашем браузере. Вы можете найти его в [Chrome Web Store](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=ru) или [Firefox Add-ons](https://addons.mozilla.org/ru/firefox/addon/tampermonkey/).
 
+> ⚠️ Если вы впервые используете Tampermonkey, то не забудьте включить режим разработчика в браузере, это можно сделать в менеджере расширений, например [тут](browser://extensions/) или [тут](chrome://extensions/)
+
 2. **Установите скрипт**: Перейдите по следующей ссылке, чтобы автоматически установить скрипт через Tampermonkey:
 
     [Установить скрипт](https://raw.githubusercontent.com/doctored11/YandexMusicPreviousTrack/main/YandexUnlock.user.js)
